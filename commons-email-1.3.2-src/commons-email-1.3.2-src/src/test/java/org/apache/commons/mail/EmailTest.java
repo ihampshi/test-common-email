@@ -114,4 +114,28 @@ public class EmailTest {
 		
 		assertEquals(1, email.replyList.size());
 	}
+	
+	@Test
+	public void testAddTo() throws Exception {
+		
+		email.addTo(TEST_EMAILS);
+		
+		assertEquals(4, email.toList.size());
+	}
+	
+	@Test(expected = EmailException.class)
+	public void test2AddTo() throws Exception {
+		
+		String[] empty = {};
+		
+		email.addTo(empty);
+	}
+	
+	@Test
+	public void test3AddTo() throws Exception {
+		
+		email.addTo(TEST_EMAILS[0]);
+		
+		assertEquals(1, email.toList.size());
+	}
 }
