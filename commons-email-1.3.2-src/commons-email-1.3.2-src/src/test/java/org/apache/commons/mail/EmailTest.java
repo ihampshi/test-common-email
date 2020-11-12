@@ -1,6 +1,7 @@
 package org.apache.commons.mail;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import javax.mail.Address;
 import javax.mail.Message.RecipientType;
@@ -19,6 +20,8 @@ public class EmailTest {
 	
 	private static final String TEST_NAME = "Name";
 	private static final String TEST_HEADER_VALUE = "Value";
+	
+	private static final String TEST_HOST_NAME = "127.0.0.1";
 	
 	//Concrete email instance for testing
 	private EmailConcrete email;
@@ -321,5 +324,19 @@ public class EmailTest {
 		String[] header = msg.getHeader(TEST_NAME);
 		
 		assertEquals(TEST_HEADER_VALUE, header[0]);
+	}
+	
+	@Test
+	public void testGetHostName() throws Exception {
+		
+		assertNull(email.getHostName());
+	}
+	
+	@Test
+	public void test2GetHostName() throws Exception {
+		
+		email.setHostName(TEST_HOST_NAME);
+		
+		assertEquals(TEST_HOST_NAME, email.getHostName());
 	}
 }
