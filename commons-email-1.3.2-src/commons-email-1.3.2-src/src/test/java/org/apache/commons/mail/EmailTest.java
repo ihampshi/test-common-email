@@ -1,9 +1,11 @@
 package org.apache.commons.mail;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import javax.mail.Address;
+import javax.mail.Session;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -338,5 +340,21 @@ public class EmailTest {
 		email.setHostName(TEST_HOST_NAME);
 		
 		assertEquals(TEST_HOST_NAME, email.getHostName());
+	}
+	
+	@Test
+	public void testGetMailSession() throws Exception {
+		
+		email.setHostName("localhost");
+		
+		Session session = email.getMailSession();
+		
+		assertNotNull(session);
+	}
+	
+	@Test(expected = EmailException.class)
+	public void test2GetMailSession() throws Exception {
+		
+		email.getMailSession();
 	}
 }
