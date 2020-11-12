@@ -11,6 +11,9 @@ public class EmailTest {
 	private static final String[] TEST_EMAILS = { "qwertyuiop@xyz.com", "mnbqwe@troll.net", "qazxswedc@poiuy.org",
 	"asd123@asdf.com.bd"};
 	
+	private static final String TEST_NAME = "Name";
+	private static final String TEST_HEADER_VALUE = "Value";
+	
 	//Concrete email instance for testing
 	private EmailConcrete email;
 	
@@ -74,5 +77,25 @@ public class EmailTest {
 		String[] empty = {};
 		
 		email.addCc(empty);
+	}
+	
+	@Test
+	public void testAddHeader() throws Exception {
+		
+		email.addHeader(TEST_NAME, TEST_HEADER_VALUE);
+		
+		assertEquals(TEST_HEADER_VALUE, email.headers.get(TEST_NAME));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test2AddHeader() throws Exception {
+		
+		email.addHeader("", TEST_HEADER_VALUE);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test3AddHeader() throws Exception {
+		
+		email.addHeader(TEST_NAME, "");
 	}
 }
