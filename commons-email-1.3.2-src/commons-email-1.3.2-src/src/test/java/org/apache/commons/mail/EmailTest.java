@@ -378,4 +378,10 @@ public class EmailTest {
 		
 		assertEquals(date, email.getSentDate());
 	}
+	
+	@Test
+	public void testGetSocketConnectionTimeout() throws Exception {
+		
+		assertEquals(EmailConstants.SOCKET_TIMEOUT_MS, email.getSocketConnectionTimeout());
+	}
 }
