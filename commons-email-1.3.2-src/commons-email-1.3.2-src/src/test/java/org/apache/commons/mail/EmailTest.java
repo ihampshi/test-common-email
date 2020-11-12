@@ -51,4 +51,28 @@ public class EmailTest {
 		
 		email.addBcc(empty);
 	}
+	
+	@Test
+	public void testAddCc() throws Exception {
+		
+		email.addCc(TEST_EMAILS);
+		
+		assertEquals(4, email.getCcAddresses().size());
+	}
+	
+	@Test
+	public void test2AddCc() throws Exception {
+		
+		email.addCc(TEST_EMAILS[0]);
+		
+		assertEquals(1, email.getCcAddresses().size());
+	}
+	
+	@Test(expected = EmailException.class)
+	public void test3AddCc() throws Exception {
+		
+		String[] empty = {};
+		
+		email.addCc(empty);
+	}
 }
