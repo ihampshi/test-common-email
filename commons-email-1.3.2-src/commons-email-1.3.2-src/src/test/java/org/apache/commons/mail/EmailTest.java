@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.time.Instant;
+import java.util.Date;
+
 import javax.mail.Address;
 import javax.mail.Session;
 import javax.mail.Message.RecipientType;
@@ -356,5 +359,23 @@ public class EmailTest {
 	public void test2GetMailSession() throws Exception {
 		
 		email.getMailSession();
+	}
+	
+	@Test
+	public void testGetSentDate() throws Exception {
+		
+		email.getSentDate();
+		
+		assertNull(email.sentDate);
+	}
+	
+	@Test
+	public void test2GetSentDate() throws Exception {
+		
+		Date date = Date.from(Instant.now());
+		
+		email.setSentDate(date);
+		
+		assertEquals(date, email.getSentDate());
 	}
 }
