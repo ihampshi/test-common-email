@@ -98,4 +98,20 @@ public class EmailTest {
 		
 		email.addHeader(TEST_NAME, "");
 	}
+	
+	@Test
+	public void testAddReplyTo() throws Exception {
+		
+		email.addReplyTo(TEST_EMAILS[0]);
+		
+		assertEquals(1, email.replyList.size());
+	}
+	
+	@Test
+	public void test2AddReplyTo() throws Exception {
+		
+		email.addReplyTo(TEST_EMAILS[0], TEST_NAME);
+		
+		assertEquals(1, email.replyList.size());
+	}
 }
